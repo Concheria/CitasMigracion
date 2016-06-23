@@ -7,6 +7,7 @@ package Controlador;
 
 import Nodo.Nodo;
 import Vista.FRM_Administrar;
+import Vista.FRM_Atender;
 import Vista.FRM_Main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 public class CNTRL_Main implements ActionListener{
     private final FRM_Main frame;
     private final FRM_Administrar administrar;
+    private final FRM_Atender atender;
     
     private Nodo inicio;
     
@@ -25,6 +27,7 @@ public class CNTRL_Main implements ActionListener{
     {
         this.frame = frame;
         administrar = new FRM_Administrar(this);
+        atender = new FRM_Atender(this);
     }
     
     @Override
@@ -37,6 +40,7 @@ public class CNTRL_Main implements ActionListener{
         if(e.getActionCommand().equals("Fila"))
         {
             System.out.println("Fila");
+            atender.setVisible(true);
         }        
         if(e.getActionCommand().equals("Reportes"))
         {
@@ -53,10 +57,13 @@ public class CNTRL_Main implements ActionListener{
     public void setInicio(Nodo inicio)
     {
         this.inicio = inicio;
-        sendInicio();
     }
     
     public void sendInicio()
     {
+        administrar.setInicio(inicio);
+        
+        atender.setInicio(inicio);
+        atender.sendInicio();
     }
 }

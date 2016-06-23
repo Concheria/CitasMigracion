@@ -19,6 +19,7 @@ public class CNTRL_Administrar implements ActionListener{
     private Nodo inicio;
     private final FRM_Administrar frame;
     private final MTDS_Administrar metodos;
+    String cedula, nombre, edad, fecha;
     
     public CNTRL_Administrar(FRM_Administrar frame)
     {
@@ -28,33 +29,54 @@ public class CNTRL_Administrar implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        convertirInfo();
+        
         if(e.getActionCommand().equals("Agregar"))
         {
-            
+            System.out.println("Agregar");
+            agregar();
         }
         if(e.getActionCommand().equals("Modificar"))
         {
-            
+            System.out.println("Modificar");
+            modificar();
         }
         if(e.getActionCommand().equals("Eliminar"))
         {
-            
+            System.out.println("Eliminar");
+            eliminar();
         }
+        
+        metodos.printLista();
+        
+        frame.resetFields();
+        frame.disableAgregar();
+        frame.disableModificarEliminar();
+        
+        metodos.sendInicio();
+        sendInicio();
     }
     
     public void agregar()
     {
-        
+        if(metodos.getInicio() != null)
+        {
+            metodos.agregar(cedula, nombre, edad, fecha, frame.isPrioridad());
+        }
+        else
+        {
+            metodos.crear(cedula, nombre, edad, fecha, frame.isPrioridad());
+        }
     }
     
     public void modificar()
     {
-        
+        metodos.modificar(cedula, nombre, edad, fecha, frame.isPrioridad());
     }
     
     public void eliminar()
     {
-        
+        metodos.Eliminar(cedula);
     }
 
     public void buscar(String cedula)
@@ -67,6 +89,7 @@ public class CNTRL_Administrar implements ActionListener{
         }
         else
         {
+            frame.resetPartialFields();
             frame.enableAgregar();
             frame.disableModificarEliminar();
         }
@@ -90,10 +113,24 @@ public class CNTRL_Administrar implements ActionListener{
      */
     public void setInicio(Nodo inicio) {
         this.inicio = inicio;
+        metodos.setInicio(inicio);
     }
     
     public void sendInicio()
     {
         frame.setInicio(inicio);
+        frame.sendInicio();
+    }
+    
+    public void convertirInfo()
+    {
+        String info[] = new String[4];
+        
+        info = frame.getInfo();
+        
+        cedula = info[0];
+        nombre = info[1];
+        edad = info[2];
+        fecha = info[3];
     }
 }

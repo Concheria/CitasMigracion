@@ -27,6 +27,7 @@ public class FRM_Administrar extends javax.swing.JFrame {
         initComponents();
         controlador = new CNTRL_Administrar(this);
         disableTodos();
+        addControlador();
     }
 
     public void addControlador()
@@ -53,12 +54,13 @@ public class FRM_Administrar extends javax.swing.JFrame {
      */
     public void setInicio(Nodo inicio) {
         this.inicio = inicio;
-        sendInicio();
+        controlador.setInicio(inicio);
     }
     
     public void sendInicio()
     {
         controladorMain.setInicio(inicio);
+        controladorMain.sendInicio();
     }
     
     public void fieldsEditableFalse()
@@ -71,10 +73,21 @@ public class FRM_Administrar extends javax.swing.JFrame {
     
     public void resetFields()
     {
+        tf_Cedula.setText("");
         tf_Nombre.setText("");
         tf_Edad.setText("");
         tf_Fecha.setText("");
         tf_Fecha.setText("");
+        chb_Prioridad.setSelected(false);
+    }
+    
+    public void resetPartialFields()
+    {
+        tf_Nombre.setText("");
+        tf_Edad.setText("");
+        tf_Fecha.setText("");
+        tf_Fecha.setText("");
+        chb_Prioridad.setSelected(false);
     }
     
     public void disableModificarEliminar()
@@ -116,6 +129,18 @@ public class FRM_Administrar extends javax.swing.JFrame {
         {
             chb_Prioridad.setSelected(true);
         }
+    }
+    
+    public String[] getInfo()
+    {
+        String[] info = new String[4];
+        
+        info[0] = tf_Cedula.getText();
+        info[1] = tf_Nombre.getText();
+        info[2] = tf_Edad.getText();
+        info[3] = tf_Fecha.getText();
+        
+        return info;
     }
 
     /**
@@ -163,8 +188,8 @@ public class FRM_Administrar extends javax.swing.JFrame {
         chb_Prioridad.setToolTipText("");
 
         tf_Cedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tf_CedulaKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tf_CedulaKeyReleased(evt);
             }
         });
 
@@ -249,9 +274,9 @@ public class FRM_Administrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_CedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_CedulaKeyTyped
+    private void tf_CedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_CedulaKeyReleased
         controlador.buscar(tf_Cedula.getText());
-    }//GEN-LAST:event_tf_CedulaKeyTyped
+    }//GEN-LAST:event_tf_CedulaKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Agregar;

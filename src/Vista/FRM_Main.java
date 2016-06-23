@@ -31,7 +31,6 @@ public class FRM_Main extends javax.swing.JFrame {
     {
         btn_Administrar.addActionListener(controlador);
         btn_Fila.addActionListener(controlador);
-        btn_Reportes.addActionListener(controlador);
     }
 
     /**
@@ -46,7 +45,6 @@ public class FRM_Main extends javax.swing.JFrame {
         btn_Administrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btn_Fila = new javax.swing.JButton();
-        btn_Reportes = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,12 +58,8 @@ public class FRM_Main extends javax.swing.JFrame {
         jLabel1.setText("Sistema de Citas");
 
         btn_Fila.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_Fila.setText("Ver Fila");
+        btn_Fila.setText("Atender");
         btn_Fila.setActionCommand("Fila");
-
-        btn_Reportes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btn_Reportes.setText("Ver Reportes");
-        btn_Reportes.setActionCommand("Reportes");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Migración");
@@ -80,8 +74,7 @@ public class FRM_Main extends javax.swing.JFrame {
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_Fila, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Administrar)
-                            .addComponent(btn_Reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_Administrar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,9 +95,7 @@ public class FRM_Main extends javax.swing.JFrame {
                 .addComponent(btn_Administrar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btn_Fila)
-                .addGap(39, 39, 39)
-                .addComponent(btn_Reportes)
-                .addGap(19, 19, 19))
+                .addGap(83, 83, 83))
         );
 
         pack();
@@ -149,7 +140,6 @@ public class FRM_Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Administrar;
     private javax.swing.JButton btn_Fila;
-    private javax.swing.JButton btn_Reportes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
