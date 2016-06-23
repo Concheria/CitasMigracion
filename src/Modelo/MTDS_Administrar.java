@@ -275,9 +275,4 @@ public class MTDS_Administrar {
     public void setInicio(Nodo inicio) {
         this.inicio = inicio;
     }
-    
-    public void sendInicio()
-    {
-        controlador.setInicio(inicio);
-    }
 }

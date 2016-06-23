@@ -52,9 +52,16 @@ public class CNTRL_Administrar implements ActionListener{
         frame.resetFields();
         frame.disableAgregar();
         frame.disableModificarEliminar();
-        
-        metodos.sendInicio();
-        sendInicio();
+    }
+    
+    public Nodo pullInicio()
+    {
+        return metodos.getInicio();
+    }
+    
+    public void sendInicio(Nodo inicio)
+    {
+        metodos.setInicio(inicio);
     }
     
     public void agregar()
@@ -114,12 +121,6 @@ public class CNTRL_Administrar implements ActionListener{
     public void setInicio(Nodo inicio) {
         this.inicio = inicio;
         metodos.setInicio(inicio);
-    }
-    
-    public void sendInicio()
-    {
-        frame.setInicio(inicio);
-        frame.sendInicio();
     }
     
     public void convertirInfo()

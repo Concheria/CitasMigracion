@@ -59,11 +59,13 @@ public class CNTRL_Main implements ActionListener{
         this.inicio = inicio;
     }
     
-    public void sendInicio()
+    public Nodo pullInicio()
     {
-        administrar.setInicio(inicio);
-        
-        atender.setInicio(inicio);
-        atender.sendInicio();
+        return administrar.pullInicio();
+    }
+    
+    public void sendInicio(Nodo inicio)
+    {
+        administrar.sendInicio(inicio);
     }
 }

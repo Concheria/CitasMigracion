@@ -30,13 +30,31 @@ public class CNTRL_Atender implements ActionListener{
         if(e.getActionCommand().equals("Avanzar"))   
         {
             avanzar();
+            sendInicio();
+            pullInicio();
+            printFila();
+        }
+        if(e.getActionCommand().equals("Refrescar"))
+        {
+            pullInicio();
             printFila();
         }
     }
     
+    public void pullInicio()
+    {
+        setInicio(frame.pullInicio());
+    }
+    
     public void avanzar()
     {
+        printInfoPrimerNodo();
         inicio = inicio.getNext();
+    }
+    
+    public void printInfoPrimerNodo()
+    {
+        frame.setFields(inicio.getInfo());
     }
 
     /**
@@ -44,6 +62,11 @@ public class CNTRL_Atender implements ActionListener{
      */
     public Nodo getInicio() {
         return inicio;
+    }
+    
+    public void sendInicio()
+    {
+        frame.sendInicio(inicio);
     }
     
     public void printFila()
@@ -56,7 +79,7 @@ public class CNTRL_Atender implements ActionListener{
     
     public String crearFila()
     {
-        String fila = "Fila\n";
+        String fila = "";
         
         Nodo temp = inicio;
         

@@ -57,12 +57,6 @@ public class FRM_Administrar extends javax.swing.JFrame {
         controlador.setInicio(inicio);
     }
     
-    public void sendInicio()
-    {
-        controladorMain.setInicio(inicio);
-        controladorMain.sendInicio();
-    }
-    
     public void fieldsEditableFalse()
     {
         tf_Nombre.setEditable(false);
@@ -141,6 +135,16 @@ public class FRM_Administrar extends javax.swing.JFrame {
         info[3] = tf_Fecha.getText();
         
         return info;
+    }
+    
+    public Nodo pullInicio()
+    {
+        return controlador.pullInicio();
+    }
+    
+    public void sendInicio(Nodo inicio)
+    {
+        controlador.sendInicio(inicio);
     }
 
     /**

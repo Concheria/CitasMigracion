@@ -27,8 +27,15 @@ public class FRM_Atender extends javax.swing.JFrame {
         this.controladorMain = controladorMain;
         initComponents();
         controlador = new CNTRL_Atender(this);
+        addControlador();
     }
 
+    public void addControlador()
+    {
+        btn_Avanzar.addActionListener(controlador);
+        btn_Refrescar.addActionListener(controlador);
+    }
+    
     /**
      * @return the inicio
      */
@@ -43,14 +50,32 @@ public class FRM_Atender extends javax.swing.JFrame {
         this.inicio = inicio;
     }
     
+    public Nodo pullInicio()
+    {
+        return controladorMain.pullInicio();
+    }
+    
     public void sendInicio()
     {
-        controlador.setInicio(inicio);
+        controladorMain.setInicio(inicio);
     }
     
     public void setTextArea(String fila)
     {
         ta_Fila.setText(fila);
+    }
+    
+    public void setFields(String[] info)
+    {
+        tf_Cedula.setText(info[0]);
+        tf_Nombre.setText(info[1]);
+        tf_Edad.setText(info[2]);
+        tf_Fecha.setText(info[3]);
+    }
+    
+    public void sendInicio(Nodo inicio)
+    {
+        controladorMain.sendInicio(inicio);
     }
 
     /**
@@ -69,11 +94,12 @@ public class FRM_Atender extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tf_Nombre = new javax.swing.JTextField();
+        tf_Cedula = new javax.swing.JTextField();
+        tf_Edad = new javax.swing.JTextField();
+        tf_Fecha = new javax.swing.JTextField();
+        btn_Avanzar = new javax.swing.JButton();
+        btn_Refrescar = new javax.swing.JButton();
 
         ta_Fila.setColumns(20);
         ta_Fila.setRows(5);
@@ -94,13 +120,24 @@ public class FRM_Atender extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Fecha");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Avanzar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tf_Nombre.setEditable(false);
+
+        tf_Cedula.setEditable(false);
+
+        tf_Edad.setEditable(false);
+
+        tf_Fecha.setEditable(false);
+
+        btn_Avanzar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_Avanzar.setText("Avanzar");
+        btn_Avanzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_AvanzarActionPerformed(evt);
             }
         });
+
+        btn_Refrescar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btn_Refrescar.setText("Refrescar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,7 +154,7 @@ public class FRM_Atender extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2))
+                                .addComponent(tf_Cedula))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -125,10 +162,11 @@ public class FRM_Atender extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(tf_Nombre)
+                                    .addComponent(tf_Edad)
+                                    .addComponent(tf_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                                    .addComponent(btn_Avanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_Refrescar))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,47 +175,50 @@ public class FRM_Atender extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tf_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(btn_Avanzar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Refrescar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_AvanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AvanzarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_AvanzarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_Avanzar;
+    private javax.swing.JButton btn_Refrescar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextArea ta_Fila;
+    private javax.swing.JTextField tf_Cedula;
+    private javax.swing.JTextField tf_Edad;
+    private javax.swing.JTextField tf_Fecha;
+    private javax.swing.JTextField tf_Nombre;
     // End of variables declaration//GEN-END:variables
 }
